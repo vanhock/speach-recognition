@@ -1,7 +1,4 @@
-# Getting Started with Speech Recognition App
-
-This app is a voice memo application built with React.js and TypeScript. It allows users to create, edit, view, and delete voice memos with a text description. 
-The application integrates with the Web Speech API to allow users to initiate speech recognition and save it as text.
+# Getting Started with SR App
 
 ## Run & build
 
