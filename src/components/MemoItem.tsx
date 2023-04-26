@@ -1,23 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Memo } from '../types/Memo';
+import {OutlineButton} from "../components/OutlineButton";
 
 interface MemoItemProps {
-    memo: Memo;
-    onDelete: (id: string) => void;
+  index: number,
+  memo: Memo;
+  onDelete: (id: string) => void;
 }
 
-export const MemoItem: React.FC<MemoItemProps> = ({ memo, onDelete }: MemoItemProps) => {
-    function handleDeleteClick() {
-        onDelete(memo.id);
-    }
+export const MemoItem: React.FC<MemoItemProps> = ({
+    index,
+  memo,
+  onDelete,
+}: MemoItemProps) => {
+  function handleDeleteClick() {
+    onDelete(memo.id);
+  }
 
-    return (
-        <li>
-            <Link to={`/memos/${memo.id}`}>
-                <h3>{memo.description}</h3>
-            </Link>
-            <button onClick={handleDeleteClick}>Delete</button>
-        </li>
-    );
-}
+  return (
+    <li
+      className={
+        'bg-white rounded-lg shadow-md p-4 flex flex-col justify-between'
+      }
+    >
+      <Link to={`/memos/${memo.id}`}>
+        <div className={'text-lg'}>
+          <div className={'font-bold'}>#{index + 1}</div> {memo.description}
+        </div>
+      </Link>
+      <OutlineButton className={'mt-2'} onClick={handleDeleteClick}>Delete</OutlineButton>
+    </li>
+  );
+};

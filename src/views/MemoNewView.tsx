@@ -1,21 +1,22 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Memo } from '../types/Memo';
 import { saveMemo } from '../services/storage';
-import {MemoForm} from '../components/MemoForm';
+import { MemoForm } from '../components/MemoForm';
+import { H1 } from '../components/H1';
 
 export const MemoNewView: React.FC = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function handleSave(memo: Memo) {
-        saveMemo(memo);
-        navigate('/memos');
-    }
+  const handleSave = (memo: Memo) => {
+    saveMemo(memo);
+    navigate('/memos');
+  }
 
-    return (
-        <div>
-            <h1>New Memo</h1>
-            <MemoForm onSubmit={handleSave} />
-        </div>
-    );
-}
+  return (
+    <div>
+      <H1>New Memo</H1>
+      <MemoForm onSubmit={handleSave} />
+    </div>
+  );
+};

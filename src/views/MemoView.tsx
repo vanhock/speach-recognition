@@ -1,22 +1,29 @@
 import React from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Memo } from '../types/Memo';
-import { getMemo } from '../services/storage';
+import { getMemo, saveMemo } from '../services/storage';
+import { H1 } from '../components/H1';
+import { MemoForm } from '../components/MemoForm';
 
 export const MemoView: React.FC = () => {
-    const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>();
-    const memo: Memo | undefined = getMemo(id);
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const memo: Memo | undefined = getMemo(id);
 
-    if (!memo) {
-        navigate('/memos');
-        return null;
-    }
+  if (!memo) {
+    navigate('/memos');
+    return null;
+  }
 
-    return (
-        <div>
-            <h1>{memo.description}</h1>
-            <a href={`/memos/${id}/edit`}>Edit</a>
-        </div>
-    );
-}
+  const handleSave = (memo: Memo) => {
+    saveMemo(memo);
+    navigate('/memos');
+  }
+
+  return (
+    <div>
+      <H1>Edit Memo</H1>
+      <MemoForm onSubmit={handleSave} memo={memo} />
+    </div>
+  );
+};
