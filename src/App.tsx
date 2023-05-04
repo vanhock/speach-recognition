@@ -15,6 +15,7 @@ export const App: React.FC = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<MemoListView />} />
+            <Route path="/memos" element={<MemoListView />} />
             <Route path="/memos/new" element={<MemoNewView />} />
             <Route path="/memos/:id" element={<MemoView />} />
           </Routes>
