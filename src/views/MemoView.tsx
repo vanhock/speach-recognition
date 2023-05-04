@@ -11,7 +11,7 @@ export const MemoView: React.FC = () => {
   const memo: Memo | undefined = getMemo(id);
 
   if (!memo) {
-    navigate('/memos');
+    window.location.href = '/'
     return null;
   }
 
